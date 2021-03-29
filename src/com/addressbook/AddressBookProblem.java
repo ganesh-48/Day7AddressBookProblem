@@ -1,13 +1,21 @@
 package com.addressbook;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class AddressBookProblem {
 	
 	
 	//instance variable creating multiple contacts
+	String addressBookName;
 	ArrayList<Contacts> contactsList = new ArrayList<Contacts>();
+	
+	public AddressBookProblem(String addressBook) {
+		this.addressBookName = addressBookName;
+	}
+	
+	
 	// Add new contact to address book
 	public void addContacts() {
 		String firstName, lastName, address, city, state, email;
@@ -148,41 +156,13 @@ public class AddressBookProblem {
 		return "";
 	}
 
-	public static void main(String[] args) {
-		System.out.println("Welcome to address book System");
-
-		AddressBookProblem addressbook = new AddressBookProblem();
-		int choice = 0;
-		while (choice != 5) {
-			Scanner sc = new Scanner(System.in);
-			System.out.println("Enter your choice");
-			System.out.println("press 1 -> Add  new contact");
-			System.out.println("press 2 -> Edit contact");
-			System.out.println("press 3 -> Delete contact");
-			System.out.println("press 4 -> Print the Address Book");
-			System.out.println("press 5 -> Exit");
-			choice = sc.nextInt();
-			switch (choice) {
-			case 1:
-				addressbook.addContacts();
-				break;
-			case 2:
-				System.out.println("enter the first name of contact you want to edit");
-				addressbook.editContact(sc.next());
-				break;
-			case 3:
-				System.out.println("enter the first name of contact you want to delete");
-				addressbook.deleteContact(sc.next());
-				break;
-			case 4:
-				System.out.println(addressbook.toString());
-				break;
-			case 5:
-				System.exit(choice);
-			default:
-				System.out.println("press correct choice number");
+	public void deleteAddressBook() {
+		if (!contactsList.isEmpty()) {
+			for (int i = 0; i < contactsList.size(); i++) {
+				Contacts contact = contactsList.get(i);
+				contact = null;
+				contactsList.remove(i);
 			}
 		}
-
 	}
 }
